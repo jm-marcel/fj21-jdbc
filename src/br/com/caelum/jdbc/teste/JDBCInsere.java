@@ -5,40 +5,42 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.Calendar;
 import br.com.caelum.jdbc.ConnectionFactory;
+import br.com.caelum.jdbc.dao.ContatoDAO;
+import br.com.caelum.jdbc.modelo.Contato;
 
 public class JDBCInsere {
 
         public static void main(String[] args) throws SQLException {
         	
-        	// conectando
-            Connection con = new ConnectionFactory().getConnection();
-
-//        	try(Connection con = new ConnectionFactory().getConnection()) {
-//                // faz um monte de operações.
-//                // que podem lançar exceptions runtime e SQLException
-//            } catch(SQLException e) {
-//                System.out.println(e);
-//            }
+        	Connection con = null;
         	
-            // cria um preparedStatement
-            String sql = "INSERT INTO contatos" +
-                    " (nome,email,endereco,dataNascimento)" +
-                    " VALUES (?,?,?,?)";
-            PreparedStatement stmt = con.prepareStatement(sql);
+        	try {
+        		// conectando
+                con = new ConnectionFactory().getConnection();
 
-            // preenche os valores
-            stmt.setString(1, "Caelum");
-            stmt.setString(2, "contato@caelum.com.br");
-            stmt.setString(3, "R. Vergueiro 3185 cj57");
-            stmt.setDate(4, new java.sql.Date(
-                    Calendar.getInstance().getTimeInMillis()));
+                // cria um preparedStatement
+                String sql = "insert into contatos" +
+                        " (nome,email,endereco,dataNascimento)" +
+                        " values (?,?,?,?)";
+                PreparedStatement stmt = con.prepareStatement(sql);
 
-            // executa
-            stmt.execute();
-            stmt.close();
+                // preenche os valores
+                stmt.setString(1, "Caelum");
+                stmt.setString(2, "contato@caelum.com.br");
+                stmt.setString(3, "R. Vergueiro 3185 cj57");
+                stmt.setDate(4, new java.sql.Date(
+                        Calendar.getInstance().getTimeInMillis()));
 
-            System.out.println("Gravado!");
+                // executa
+                stmt.execute();
+                stmt.close();
 
-            con.close();
+                System.out.println("Gravado!");
+        	}catch(SQLException e) {
+        		System.out.println(e);
+        	}finally {
+        		con.close();
+        	}
+
         }
     }
