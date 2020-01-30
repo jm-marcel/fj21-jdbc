@@ -52,7 +52,7 @@ public class ContatoDAO {
 	        stmt.setString(1, contato.getNome());
 	        stmt.setString(2, contato.getEmail());
 	        stmt.setString(3, contato.getEndereco());
-	        stmt.setDate(4, (java.sql.Date) new Date(contato.getDataNascimento()
+	        stmt.setDate(4, new Date(contato.getDataNascimento()
 	                .getTimeInMillis()));
 	        stmt.setLong(5, contato.getId());
 	        stmt.execute();

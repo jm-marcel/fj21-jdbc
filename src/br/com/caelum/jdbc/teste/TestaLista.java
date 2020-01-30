@@ -1,6 +1,6 @@
 package br.com.caelum.jdbc.teste;
 
-import java.awt.List;
+//import java.awt.List;
 import java.util.ArrayList;
 
 import br.com.caelum.jdbc.dao.ContatoDAO;
