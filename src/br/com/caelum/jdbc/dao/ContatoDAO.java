@@ -1,13 +1,13 @@
 package br.com.caelum.jdbc.dao;
 
-import java.awt.List;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
+
 import br.com.caelum.jdbc.ConnectionFactory;
 import br.com.caelum.jdbc.modelo.Contato;
 
@@ -33,7 +33,7 @@ public class ContatoDAO {
 			stmt.setString(1, contato.getNome());
 			stmt.setString(2, contato.getEmail());
 			stmt.setString(3, contato.getEndereco());
-			stmt.setDate(4, (java.sql.Date) new Date(contato.getDataNascimento().getTimeInMillis()));
+			stmt.setDate(4, new Date(contato.getDataNascimento().getTimeInMillis()));
 			
 			// Executa
 			stmt.execute();
