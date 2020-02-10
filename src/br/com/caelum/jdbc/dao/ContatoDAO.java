@@ -8,15 +8,15 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Calendar;
 
-import br.com.caelum.jdbc.ConnectionFactory;
+// import br.com.caelum.jdbc.ConnectionFactory;
 import br.com.caelum.jdbc.modelo.Contato;
 
 public class ContatoDAO {
 
 	private Connection connection;
 	
-	public ContatoDAO() {
-		this.connection = new ConnectionFactory().getConnection();
+	public ContatoDAO(Connection connection) {
+		this.connection = connection;
 	}
 	
 	public void adiciona(Contato contato) {
@@ -45,8 +45,8 @@ public class ContatoDAO {
 	}
 	
 	public void altera(Contato contato) {
-	    String sql = "update contatos set nome=?, email=?, endereco=?," +
-	            "dataNascimento=? where id=?";
+	    String sql = "UPDATE contatos SET nome=?, email=?, endereco=?," +
+	            "dataNascimento=? WHERE id=?";
 	    try {
 	        PreparedStatement stmt = connection.prepareStatement(sql);
 	        stmt.setString(1, contato.getNome());
@@ -64,8 +64,8 @@ public class ContatoDAO {
 	
 	public void remove(Contato contato) {
 	    try {
-	        PreparedStatement stmt = connection.prepareStatement("delete " +
-	                "from contatos where id=?");
+	        PreparedStatement stmt = connection.prepareStatement("DELETE " +
+	                "FROM contatos WHERE id=?");
 	        stmt.setLong(1, contato.getId());
 	        stmt.execute();
 	        stmt.close();

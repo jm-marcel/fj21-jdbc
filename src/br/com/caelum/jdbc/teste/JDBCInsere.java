@@ -19,9 +19,9 @@ public class JDBCInsere {
                 con = new ConnectionFactory().getConnection();
 
                 // cria um preparedStatement
-                String sql = "insert into contatos" +
+                String sql = "INSERT INTO contatos" +
                         " (nome,email,endereco,dataNascimento)" +
-                        " values (?,?,?,?)";
+                        " VALUES (?,?,?,?)";
                 PreparedStatement stmt = con.prepareStatement(sql);
 
                 // preenche os valores

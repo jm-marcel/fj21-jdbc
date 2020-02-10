@@ -10,7 +10,7 @@ public class TestaLista {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		ContatoDAO dao = new ContatoDAO();
+		ContatoDAO dao = new ContatoDAO(null);
 		
 		ArrayList<Contato> contatos = dao.getLista();
 		
